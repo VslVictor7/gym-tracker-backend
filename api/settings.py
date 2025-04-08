@@ -84,7 +84,7 @@ TEMPLATES = [
 ]
 
 # WSGI Application
-WSGI_APPLICATION = 'institucional.wsgi.application'
+WSGI_APPLICATION = 'api.wsgi.application'
 
 # Password Validation
 AUTH_PASSWORD_VALIDATORS = [
