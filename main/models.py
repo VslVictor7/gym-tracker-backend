@@ -7,6 +7,9 @@ class Exercise(models.Model):
     muscle_group = models.CharField(max_length=100, verbose_name='Grupo Muscular')
     notes = models.TextField(blank=True, null=True, verbose_name='Notas')
 
+    def __str__(self):
+        return f'{self.name}'
+
 class Day(models.Model):
     date = models.DateField(verbose_name='Data')
     notes = models.TextField(blank=True, null=True, verbose_name='Notas')
@@ -20,3 +23,6 @@ class WorkoutExercise(models.Model):
     weight = models.FloatField(verbose_name='Peso')
     reps = models.IntegerField(verbose_name='Repetições')
     set_number = models.IntegerField(verbose_name='Número da Série')
+
+    def __str__(self):
+        return f'{self.exercise.name} em {self.workout_session.date}'

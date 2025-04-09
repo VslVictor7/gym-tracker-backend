@@ -1,9 +1,16 @@
 from django.urls import path
-from .views import ExerciseViewSet, WorkoutSessionViewSet, WorkoutExerciseViewSet, WorkoutSetViewSet
+from rest_framework.routers import DefaultRouter
+from django.conf.urls import include
+from .views import (
+    ExerciseView, DayView, WorkoutExerciseView,
+)
+
+router = DefaultRouter()
+
+router.register('exercise', ExerciseView, basename='exercise')
+router.register('day', DayView, basename='day')
+router.register('workout-session', WorkoutExerciseView, basename='workout-session')
 
 urlpatterns = [
-   path('exercicio/', ExerciseViewSet.as_view(), name='login'),
-   path('p/', WorkoutExerciseViewSet.as_view(), name='post-list'),
-   path('posts/<int:pk>/', WorkoutSessionViewSet.as_view(), name='post-detail'),
-   path('posts/<int:pk>/comments/', WorkoutSetViewSet.as_view(), name='comment-list'),
+    path('', include(router.urls)),
 ]
