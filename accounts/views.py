@@ -30,8 +30,9 @@ def login(request):
     serializer = UserSerializer(instance=user)
     return Response({"token": token.key, "user": serializer.data}, status=status.HTTP_200_OK)
 
+
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def test_token(request):
-    return Response("Token verificado. {}".format(request.user.email), status=status.HTTP_200_OK)
+    return Response("Token verificado. Usuário '{}' aprovado.".format(request.user.username), status=status.HTTP_200_OK)
