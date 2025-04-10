@@ -1,5 +1,5 @@
 services:
-  backend:
+  drf-api:
     build:
       context: .
       dockerfile: Dockerfile
