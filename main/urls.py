@@ -7,9 +7,9 @@ from .views import (
 
 router = DefaultRouter()
 
-router.register('exercise', ExerciseView, basename='exercise')
-router.register('day', DayView, basename='day')
-router.register('workout-session', WorkoutExerciseView, basename='workout-session')
+router.register('exercises', ExerciseView, basename='exercises')
+router.register('days', DayView, basename='days')
+router.register('workout-sessions', WorkoutExerciseView, basename='workout-sessions')
 
 urlpatterns = [
     path('', include(router.urls)),
