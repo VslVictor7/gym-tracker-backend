@@ -1,26 +1,26 @@
 from rest_framework import serializers
-from .models import Exercise, WorkoutSession, WorkoutExercise, WorkoutSet
+from .models import Exercise, Day, WorkoutExercise
 
 class ExerciseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Exercise
         fields = '__all__'
 
-class WorkoutSetSerializer(serializers.ModelSerializer):
+class DaySerializer(serializers.ModelSerializer):
     class Meta:
-        model = WorkoutSet
+        model = Day
         fields = '__all__'
 
 class WorkoutExerciseSerializer(serializers.ModelSerializer):
-    sets = WorkoutSetSerializer(many=True, read_only=True, source='workoutset_set')
+    exercise_name = serializers.SerializerMethodField()
+    workout_date = serializers.SerializerMethodField()
 
     class Meta:
         model = WorkoutExercise
-        fields = '__all__'
+        fields = ['id', 'exercise_name', 'workout_date', 'weight', 'reps', 'set_number']
 
-class WorkoutSessionSerializer(serializers.ModelSerializer):
-    exercises = WorkoutExerciseSerializer(many=True, read_only=True, source='workoutexercise_set')
+    def get_exercise_name(self, obj):
+        return obj.exercise.name
 
-    class Meta:
-        model = WorkoutSession
-        fields = '__all__'
+    def get_workout_date(self, obj):
+        return obj.workout_session.date

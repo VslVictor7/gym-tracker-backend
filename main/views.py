@@ -1,19 +1,15 @@
 from rest_framework import viewsets
-from .models import Exercise, WorkoutSession, WorkoutExercise, WorkoutSet
-from .serializers import ExerciseSerializer, WorkoutSessionSerializer, WorkoutExerciseSerializer, WorkoutSetSerializer
+from .models import Exercise, Day, WorkoutExercise
+from .serializers import ExerciseSerializer, DaySerializer, WorkoutExerciseSerializer
 
-class ExerciseViewSet(viewsets.ModelViewSet):
+class ExerciseView(viewsets.ModelViewSet):
     queryset = Exercise.objects.all()
     serializer_class = ExerciseSerializer
 
-class WorkoutSessionViewSet(viewsets.ModelViewSet):
-    queryset = WorkoutSession.objects.all()
-    serializer_class = WorkoutSessionSerializer
+class DayView(viewsets.ModelViewSet):
+    queryset = Day.objects.all()
+    serializer_class = DaySerializer
 
-class WorkoutExerciseViewSet(viewsets.ModelViewSet):
+class WorkoutExerciseView(viewsets.ModelViewSet):
     queryset = WorkoutExercise.objects.all()
     serializer_class = WorkoutExerciseSerializer
-
-class WorkoutSetViewSet(viewsets.ModelViewSet):
-    queryset = WorkoutSet.objects.all()
-    serializer_class = WorkoutSetSerializer
