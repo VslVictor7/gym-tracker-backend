@@ -5,7 +5,7 @@ from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 from rest_framework_simplejwt.exceptions import InvalidToken
 
 class CookieTokenRefreshSerializer(TokenRefreshSerializer):
-    refresh = None
+    refresh = serializers.CharField(required=True)
 
     def validate(self, attrs):
         attrs['refresh'] = self.context['request'].COOKIES.get('refresh_token')

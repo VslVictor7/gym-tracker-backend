@@ -1,7 +1,10 @@
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from django.http import JsonResponse
 from .serializers import UserSerializer, MyTokenObtainPairSerializer, CookieTokenRefreshSerializer
 
 
@@ -48,3 +51,24 @@ def signup(request):
         user.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def logout_user(request):
+    refresh_token = request.COOKIES.get('refresh_token')
+
+    if not refresh_token:
+        return JsonResponse({"detail": "Token inválido ou não encontrado."}, status=400)
+
+    try:
+        token = RefreshToken(refresh_token)
+        
+        token.blacklist()
+
+        response = JsonResponse({"message": "Logout realizado com sucesso"})
+        response.delete_cookie('refresh_token')
+        return response
+    except InvalidToken:
+        return JsonResponse({"detail": "Token inválido."}, status=400)
+    except TokenError:
+        return JsonResponse({"detail": "Erro ao processar o token."}, status=400)
