@@ -19,7 +19,7 @@ class CookieTokenObtainPairView(TokenObtainPairView):
                 response.data['refresh'],
                 max_age=cookie_max_age,
                 httponly=True,
-                #secure=True,
+                secure=True,
                 samesite='Lax'
             )
             del response.data['refresh']
