@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Exercise, Day, WorkoutExercise
+from .models import *
 
 class ExerciseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,3 +24,8 @@ class WorkoutExerciseSerializer(serializers.ModelSerializer):
 
     def get_workout_date(self, obj):
         return obj.workout_session.date
+    
+class WeightEntrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PersonalWeight
+        fields = '__all__'
