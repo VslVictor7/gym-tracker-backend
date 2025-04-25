@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import User
 
 # Create your models here.
 
@@ -26,3 +27,12 @@ class WorkoutExercise(models.Model):
 
     def __str__(self):
         return f'{self.exercise.name} em {self.workout_session.date}'
+    
+class PersonalWeight(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="weight_entries")
+    date = models.DateField()
+    weight_morning = models.FloatField()
+    weight_night = models.FloatField()
+
+    def __str__(self):
+        return f"{self.date} - Início: {self.weight_morning}kg / Final: {self.weight_night}kg"
