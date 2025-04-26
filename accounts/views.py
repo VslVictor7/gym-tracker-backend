@@ -7,6 +7,7 @@ from .serializers import UserSerializer
 
 
 @api_view(['POST'])	
+@permission_classes([AllowAny])
 def signup_view(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
