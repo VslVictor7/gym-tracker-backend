@@ -7,7 +7,7 @@ router = DefaultRouter()
 
 router.register('exercises', ExerciseView, basename='exercises')
 router.register('days', DayView, basename='days')
-router.register('workout-sessions', WorkoutExerciseView, basename='workout-sessions')
+router.register('workout-sessions', SessionsView, basename='workout-sessions')
 router.register('body-weight', WeightEntryView, basename='body-weight')
 
 urlpatterns = [
