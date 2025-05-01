@@ -1,5 +1,5 @@
 from rest_framework import viewsets, permissions
-from .models import Exercise, Day, WorkoutExercise
+from .models import Exercise, Day, Sessions
 from .serializers import *
 
 class ExerciseView(viewsets.ModelViewSet):
@@ -10,9 +10,9 @@ class DayView(viewsets.ModelViewSet):
     queryset = Day.objects.all()
     serializer_class = DaySerializer
 
-class WorkoutExerciseView(viewsets.ModelViewSet):
-    queryset = WorkoutExercise.objects.all()
-    serializer_class = WorkoutExerciseSerializer
+class SessionsView(viewsets.ModelViewSet):
+    queryset = Sessions.objects.all()
+    serializer_class = SessionsSerializer
 
 class WeightEntryView(viewsets.ModelViewSet):
     serializer_class = WeightEntrySerializer

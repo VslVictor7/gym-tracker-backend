@@ -10,6 +10,10 @@ class Exercise(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+    
+    class Meta:
+        verbose_name = "Exercício"
+        verbose_name_plural = "Exercícios"
 
 class Day(models.Model):
     date = models.DateField(verbose_name='Data')
@@ -18,7 +22,7 @@ class Day(models.Model):
     def __str__(self):
         return f'Sessão de Treino em {self.date}'
     
-class WorkoutExercise(models.Model):
+class Sessions(models.Model):
     workout_session = models.ForeignKey(Day, on_delete=models.CASCADE, related_name='exercises', verbose_name='Sessão de Treino')
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, related_name='workout_exercises', verbose_name='Exercício')
     weight = models.FloatField(verbose_name='Peso')
@@ -28,6 +32,11 @@ class WorkoutExercise(models.Model):
     def __str__(self):
         return f'{self.exercise.name} em {self.workout_session.date}'
     
+    class Meta:
+        verbose_name = "Exercício do Treino"
+        verbose_name_plural = "Exercícios do Treino"
+        
+    
 class PersonalWeight(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="weight_entries")
     date = models.DateField()
@@ -36,3 +45,7 @@ class PersonalWeight(models.Model):
 
     def __str__(self):
         return f"{self.date} - Início: {self.weight_morning}kg / Final: {self.weight_night}kg"
+    
+    class Meta:
+        verbose_name = "Peso Pessoal"
+        verbose_name_plural = "Pesos Pessoais"

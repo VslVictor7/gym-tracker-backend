@@ -11,12 +11,12 @@ class DaySerializer(serializers.ModelSerializer):
         model = Day
         fields = '__all__'
 
-class WorkoutExerciseSerializer(serializers.ModelSerializer):
+class SessionsSerializer(serializers.ModelSerializer):
     exercise_name = serializers.SerializerMethodField()
     workout_date = serializers.SerializerMethodField()
 
     class Meta:
-        model = WorkoutExercise
+        model = Sessions
         fields = ['id', 'exercise_name', 'workout_date', 'weight', 'reps', 'set_number']
 
     def get_exercise_name(self, obj):
