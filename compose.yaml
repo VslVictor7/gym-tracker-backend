@@ -15,24 +15,24 @@ services:
   # Banco de Dados PostgreSQL (opcional)
   # Recomendado usar um banco de dados externo para produção.
 
-    # depends_on:
-    #   - postgres
+    depends_on:
+       - postgres
 
-  # postgres:
-  #   image: postgres:17-alpine
-  #   container_name: postgres
-  #   environment:
-  #     - POSTGRES_USER=${DB_USER}
-  #     - POSTGRES_PASSWORD=${DB_PASSWORD}
-  #     - POSTGRES_DB=${DB_NAME}
-  #   env_file: .env
-  #   volumes:
-  #     - postgres-data:/var/lib/postgresql/data
-  #   networks:
-  #     - internal
+  postgres:
+     image: postgres:17-alpine
+     container_name: postgres
+     environment:
+       - POSTGRES_USER=${DB_USER}
+       - POSTGRES_PASSWORD=${DB_PASSWORD}
+       - POSTGRES_DB=${DB_NAME}
+     env_file: .env
+     volumes:
+       - postgres-data:/var/lib/postgresql/data
+     networks:
+       - internal
 
 networks:
   internal:
 
-#volumes:
-#  postgres-data:
+volumes:
+  postgres-data:
