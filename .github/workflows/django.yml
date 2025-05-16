@@ -23,7 +23,7 @@ jobs:
       DB_HOST: "localhost"
       DB_PORT: "3306"
       DEBUG: "True"
-      DB_USED: "sqlite"  # Use sqlite no CI, mesmo que use MySQL localmente
+      DB_USED: "sqlite"
       ALLOWED_HOSTS: "127.0.0.1,localhost"
       CORS_ALLOW: "http://localhost:1234"
       CSRF_TRUSTED_ORIGINS: "http://localhost:8000,http://127.0.0.1:8000"
