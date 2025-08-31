@@ -53,6 +53,11 @@ jobs:
         run: |
           python manage.py migrate
 
-      - name: Run tests
-        run: |
-          python manage.py test --verbosity=2
+      - name: 🧱 Run migrations
+        run: python manage.py migrate --noinput
+
+      - name: 🧪 Run tests
+        run: python manage.py test --verbosity=2
+
+      - name: 🚀 Deploy (simulado)
+        run: echo "Deploy realizado com sucesso!"
